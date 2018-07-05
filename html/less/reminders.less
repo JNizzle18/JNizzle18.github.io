@@ -1,0 +1,58 @@
+.reminder:extend([class*="block"]){
+  color: @block-bg-color;
+  width: 100%;
+  margin-bottom: @standard-margin;
+  height: @reminder-height;
+  box-shadow: @standard-inset-shadow;
+  border-radius: @standard-border-radius;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  > * {
+    display: inline-block;
+    height: @reminder-height;
+    line-height: @reminder-height;
+    float: left;
+  }
+  > *:last-child {
+    float: right;
+  }
+  .message,
+  .actions {
+    padding: 0 @standard-padding;
+  }
+ .status {
+    width: 95px;
+    box-shadow: @standard-inset-shadow;
+  }
+  .message {
+    .subject,
+    .interval,
+    .message-status,
+    .remaining-time {
+      .bolder-font;
+    }
+  }
+  .actions {
+    line-height: @input-height;
+    .vertical-align;
+  }
+}
+.overdue {
+  background: @lighter-red;
+  .status {
+    background: @darker-red;
+  }
+}
+.unlocked {
+  background: @lighter-blue;
+  .status {
+    background: @darker-blue;
+  }
+}
+.due {
+  background: @lighter-green;
+  .status {
+    background: @darker-green;
+  }
+}

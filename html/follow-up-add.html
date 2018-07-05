@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Follow Up : Add</title>
+  <link rel="stylesheet/less" type="text/css" href="less/style.less">
+  <script src="js/less.js" data-env="development"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="js/jquery.selectBox.js"></script>
+  <script>
+    $(function() {
+      // initialise select boxes
+      $('select').selectBox();
+
+      // fold down nested sections
+      $('.section-nested').each(function() {
+        var $self = $(this);
+        var $switcher = $('#' + $self.data('switcher'));
+        // console.log($switcher);
+        if ($switcher.length) {
+          toggleNestedSection($switcher, $self);
+          // bind click
+          $('[name*="' + $switcher.attr('name') + '"]').change(function() {
+            toggleNestedSection($switcher, $self, getSpeed($self));
+          });
+        }
+      });
+
+      function getSpeed(elem, minSpeed) {
+        var min = minSpeed || 500;
+        var max = 2000;
+        var h = elem.height();
+        return (h > min && h < max) ? h : (h > max ? max : min);
+      }
+
+      function toggleNestedSection(switcher, target, speed) {
+        var speed = speed || 0;
+        if (switcher.is(':checked')) {
+          target.slideDown(speed);
+        } else {
+          target.slideUp(speed);
+        }
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div id="content">
+
+    <!-- Eye disease at presentation -->
+    <div class="block">
+      <div class="block-header">
+        <h3 class="block-heading text-align-center">Ocular Disease &amp; treatment</h3>
+      </div>
+      <div class="block-content-section">
+        <!-- left eye -->
+        <div class="section-half float-left ">
+          <div class="form-field">
+            <input type="checkbox" name="l_eye_switcher" id="l_eye_switcher" runat="server">
+            <label class="bolder-font" for="l_eye_switcher"><span></span>Left eye disease during reporting interval</label>
+          </div>
+          <div class="section-nested" data-switcher="l_eye_switcher">
+            <!-- Visual acuity at presentation -->
+            <div class="form-field">
+              <p class="required bolder-font">Visual acuity at presentation</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <select class="input-regular" name="l_visual_acuity" id="l_visual_acuity" runat="server">
+                  <option value="null">Foot&nbsp;&nbsp;|&nbsp;&nbsp;Metre&nbsp;&nbsp;|&nbsp;&nbsp;Dec&nbsp;&nbsp;|&nbsp;&nbsp;LogMAR</option>
+                </select>
+              </div>
+            </div>
+            <!-- Tissue involvement at end of reporting interval -->
+            <div class="form-field">
+              <p class="required bolder-font">Tissue involvement at end of reporting interval</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <input type="checkbox" name="l_tissue_vitreous" id="l_tissue_vitreous" runat="server">
+                <label for="l_tissue_vitreous"><span></span>Vitreous</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="l_tissue_retina" id="l_tissue_retina" runat="server">
+                <label for="l_tissue_retina"><span></span>Retina (incl. RPE)</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="l_tissue_optic_nerve" id="l_tissue_optic_nerve" runat="server">
+                <label for="l_tissue_optic_nerve"><span></span>Optic nerve</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="l_tissue_anterior_segment" id="l_tissue_anterior_segment" runat="server">
+                <label for="l_tissue_anterior_segment"><span></span>Anterior segment</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="l_tissue_other_switcher" id="l_tissue_other_switcher" runat="server">
+                <label for="l_tissue_other_switcher"><span></span>Other ocular tissue</label>
+              </div>
+              <div class="section-nested" data-switcher="l_tissue_other_switcher">
+                <div class="form-field-relative">
+                  <textarea name="l_tissue_other" id="l_tissue_other" placeholder="Specify" class="input-regular input-multiline"></textarea>
+                </div>
+              </div>
+            </div>
+            <!-- Vitrectomy during reporting interval -->
+            <div class="form-field">
+              <p class="required bolder-font">Vitrectomy during reporting interval</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <select class="input-small" name="l_vitrectomy" id="l_vitrectomy" runat="server">
+                  <option value="null">1</option>
+                </select>
+              </div>
+            </div>
+            <!-- Focal ocular treatment -->
+            <div class="form-field">
+              <input type="checkbox" name="l_focal_ocular_treatment" id="l_focal_ocular_treatment" runat="server">
+              <label class="bolder-font" for="l_focal_ocular_treatment"><span></span>Focal ocular treatment during reporting interval</label>
+            </div>
+            <div class="section-nested" data-switcher="l_focal_ocular_treatment">
+              <!-- Intraocular methotrexate -->
+              <div class="form-field">
+                <input type="checkbox" name="l_methotrexate" id="l_methotrexate" runat="server">
+                <label for="l_methotrexate"><span></span>Intraocuar methotrexate</label>
+              </div>
+              <div class="section-nested" data-switcher="l_methotrexate">
+                <div class="form-field">
+                  <select class="input-small" name="l_met_number_of_injections" id="l_met_number_of_injections" runat="server">
+                    <option value="null">1</option>
+                  </select>
+                  <span>Number of injections</span>
+                </div>
+                <div class="form-field">
+                  <input class="input-small" type="text" name="l_met_unit_dose" id="l_met_unit_dose" maxlength="3" runat="server">
+                  <label for="l_met_unit_dose"><span>[ in mg/0.1 ml ]</span></label>
+                </div>
+              </div>
+              <!-- Intraocular rituximab -->
+              <div class="form-field">
+                <input type="checkbox" name="l_rituximab_switcher" id="l_rituximab_switcher" runat="server">
+                <label for="l_rituximab_switcher"><span></span>Intraocuar rituximab</label>
+              </div>
+              <div class="section-nested" data-switcher="l_rituximab_switcher">
+                <div class="form-field">
+                  <select class="input-small" name="l_rit_number_of_injections" id="l_rit_number_of_injections" runat="server">
+                    <option value="null">1</option>
+                  </select>
+                  <span>Number of injections</span>
+                </div>
+                <div class="form-field">
+                  <input class="input-small" type="text" name="l_rit_unit_dose" id="l_rit_unit_dose" maxlength="3" runat="server">
+                  <label for="l_rit_unit_dose"><span>[ in mg/0.1 ml ]</span></label>
+                </div>
+              </div>
+              <!-- Other intraocular drug -->
+              <div class="form-field">
+                <input type="checkbox" name="l_other_drug_switcher" id="l_other_drug_switcher" runat="server">
+                <label for="l_other_drug_switcher"><span></span>Other intraocular drug</label>
+              </div>
+              <div class="section-nested" data-switcher="l_other_drug_switcher">
+                <div class="form-field">
+                  <select class="input-small" name="l_other_number_of_injections" id="l_other_number_of_injections" runat="server">
+                    <option value="null">1</option>
+                  </select>
+                  <span>Number of injections</span>
+                </div>
+                <!-- Not sure what is applicable in this case. Commenting out line 177 in case we will need it later -->
+                <div class="form-field">
+                  <input class="input-small" type="text" name="l_other_unit_dose" id="l_other_unit_dose" runat="server" placeholder="unit dose">
+                  <input class="input-small" type="text" name="l_other_state_units" id="l_other_state_units" runat="server" placeholder="state units">
+                  <!-- <label for="l_other_unit_dose"><span>[ in mg/0.1 ml ]</span></label> -->
+                </div>
+              </div>
+              <!-- Ocular irradiation -->
+              <div class="form-field">
+                <input type="checkbox" name="l_irradiation_switcher" id="l_irradiation_switcher" runat="server">
+                <label for="l_irradiation_switcher"><span></span>Intraocuar rituximab</label>
+              </div>
+              <div class="section-nested" data-switcher="l_irradiation_switcher">
+                <div class="form-field">
+                  <input class="input-small" type="text" name="l_irr_total_dose" id="l_irr_total_dose" maxlength="3" runat="server">
+                  <label for="l_irr_total_dose"><span>[ in Gy ]</span></label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Complications -->
+            <div class="form-field">
+              <input type="checkbox" name="l_complications_switcher" id="l_complications_switcher" runat="server">
+              <label class="bolder-font" for="l_complications_switcher"><span></span>Complications present during reporting interval</label>
+            </div>
+            <div class="section-nested" data-switcher="l_complications_switcher">
+              <div class="form-field">
+                <input type="checkbox" name="l_keratopathy" id="l_keratopathy" runat="server">
+                <label for="l_keratopathy"><span></span>Keratopathy</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="l_cataract" id="l_cataract" runat="server">
+                <label for="l_cataract"><span></span>Cataract</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="l_raised_intraocular_pressure" id="l_raised_intraocular_pressure" runat="server">
+                <label for="l_raised_intraocular_pressure"><span></span>Raised intraocular pressure</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="l_glaucoma" id="l_glaucoma" runat="server">
+                <label for="l_glaucoma"><span></span>Glaucoma</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="l_uveitis" id="l_uveitis" runat="server">
+                <label for="l_uveitis"><span></span>Uveitis</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="l_maculopathy" id="l_maculopathy" runat="server">
+                <label for="l_maculopathy"><span></span>Maculopathy</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="l_retinopathy" id="l_retinopathy" runat="server">
+                <label for="l_retinopathy"><span></span>Retinopathy</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="l_other_complication_switcher" id="l_other_complication_switcher" runat="server">
+                <label for="l_other_complication_switcher"><span></span>Other complications</label>
+              </div>
+              <div class="section-nested" data-switcher="l_other_complication_switcher">
+                <div class="form-field-relative">
+                  <textarea name="l_other_complication" type="text" id="l_other_complication" class="input-regular input-multiline" placeholder="Specify"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="form-field">
+              <p class="required bolder-font">Status at end of reporting interval</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <select class="input-regular" name="l_status" id="l_status" runat="server">
+                  <option value="null">Complete Response</option>
+                </select>
+              </div>
+              <div class="form-field-relative">
+                <textarea class="input-regular input-multiline" type="text" name="l_define" id="l_define" runat="server" placeholder="Define"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- right eye -->
+        <div class="section-half float-left ">
+          <div class="form-field">
+            <input type="checkbox" name="r_eye_switcher" id="r_eye_switcher" runat="server">
+            <label class="bolder-font" for="r_eye_switcher"><span></span>Right eye disease during reporting interval</label>
+          </div>
+          <div class="section-nested" data-switcher="r_eye_switcher">
+            <!-- Visual acuity at presentation -->
+            <div class="form-field">
+              <p class="required bolder-font">Visual acuity at presentation</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <select class="input-regular" name="r_visual_acuity" id="r_visual_acuity" runat="server">
+                  <option value="null">Foot&nbsp;&nbsp;|&nbsp;&nbsp;Metre&nbsp;&nbsp;|&nbsp;&nbsp;Dec&nbsp;&nbsp;|&nbsp;&nbsp;LogMAR</option>
+                </select>
+              </div>
+            </div>
+            <!-- Tissue involvement at end of reporting interval -->
+            <div class="form-field">
+              <p class="required bolder-font">Tissue involvement at end of reporting interval</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <input type="checkbox" name="r_tissue_vitreous" id="r_tissue_vitreous" runat="server">
+                <label for="r_tissue_vitreous"><span></span>Vitreous</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="r_tissue_retina" id="r_tissue_retina" runat="server">
+                <label for="r_tissue_retina"><span></span>Retina (incl. RPE)</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="r_tissue_optic_nerve" id="r_tissue_optic_nerve" runat="server">
+                <label for="r_tissue_optic_nerve"><span></span>Optic nerve</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="r_tissue_anterior_segment" id="r_tissue_anterior_segment" runat="server">
+                <label for="r_tissue_anterior_segment"><span></span>Anterior segment</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="r_tissue_other_switcher" id="r_tissue_other_switcher" runat="server">
+                <label for="r_tissue_other_switcher"><span></span>Other ocular tissue</label>
+              </div>
+              <div class="section-nested" data-switcher="r_tissue_other_switcher">
+                <div class="form-field-relative">
+                  <textarea name="r_tissue_other" id="r_tissue_other" placeholder="Specify" class="input-regular input-multiline"></textarea>
+                </div>
+              </div>
+            </div>
+            <!-- Vitrectomy during reporting interval -->
+            <div class="form-field">
+              <p class="required bolder-font">Vitrectomy during reporting interval</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <select class="input-small" name="r_vitrectomy" id="r_vitrectomy" runat="server">
+                  <option value="null">1</option>
+                </select>
+              </div>
+            </div>
+            <!-- Focal ocular treatment -->
+            <div class="form-field">
+              <input type="checkbox" name="r_focal_ocular_treatment" id="r_focal_ocular_treatment" runat="server">
+              <label class="bolder-font" for="r_focal_ocular_treatment"><span></span>Focal ocular treatment during reporting interval</label>
+            </div>
+            <div class="section-nested" data-switcher="r_focal_ocular_treatment">
+              <!-- Intraocular methotrexate -->
+              <div class="form-field">
+                <input type="checkbox" name="r_methotrexate" id="r_methotrexate" runat="server">
+                <label for="r_methotrexate"><span></span>Intraocuar methotrexate</label>
+              </div>
+              <div class="section-nested" data-switcher="r_methotrexate">
+                <div class="form-field">
+                  <select class="input-small" name="r_met_number_of_injections" id="r_met_number_of_injections" runat="server">
+                    <option value="null">1</option>
+                  </select>
+                  <span>Number of injections</span>
+                </div>
+                <div class="form-field">
+                  <input class="input-small" type="text" name="r_met_unit_dose" id="r_met_unit_dose" maxlength="3" runat="server">
+                  <label for="r_met_unit_dose"><span>[ in mg/0.1 ml ]</span></label>
+                </div>
+              </div>
+              <!-- Intraocular rituximab -->
+              <div class="form-field">
+                <input type="checkbox" name="r_rituximab_switcher" id="r_rituximab_switcher" runat="server">
+                <label for="r_rituximab_switcher"><span></span>Intraocuar rituximab</label>
+              </div>
+              <div class="section-nested" data-switcher="r_rituximab_switcher">
+                <div class="form-field">
+                  <select class="input-small" name="r_rit_number_of_injections" id="r_rit_number_of_injections" runat="server">
+                    <option value="null">1</option>
+                  </select>
+                  <span>Number of injections</span>
+                </div>
+                <div class="form-field">
+                  <input class="input-small" type="text" name="r_rit_unit_dose" id="r_rit_unit_dose" maxlength="3" runat="server">
+                  <label for="r_rit_unit_dose"><span>[ in mg/0.1 ml ]</span></label>
+                </div>
+              </div>
+              <!-- Other intraocular drug -->
+              <div class="form-field">
+                <input type="checkbox" name="r_other_drug_switcher" id="r_other_drug_switcher" runat="server">
+                <label for="r_other_drug_switcher"><span></span>Other intraocular drug</label>
+              </div>
+              <div class="section-nested" data-switcher="r_other_drug_switcher">
+                <div class="form-field">
+                  <select class="input-small" name="r_other_number_of_injections" id="r_other_number_of_injections" runat="server">
+                    <option value="null">1</option>
+                  </select>
+                  <span>Number of injections</span>
+                </div>
+                <!-- Not sure what is applicable in this case. Commenting out line 177 in case we will need it later -->
+                <div class="form-field">
+                  <input class="input-small" type="text" name="r_other_unit_dose" id="r_other_unit_dose" runat="server" placeholder="unit dose">
+                  <input class="input-small" type="text" name="r_other_state_units" id="r_other_state_units" runat="server" placeholder="state units">
+                  <!-- <label for="r_other_unit_dose"><span>[ in mg/0.1 ml ]</span></label> -->
+                </div>
+              </div>
+              <!-- Ocular irradiation -->
+              <div class="form-field">
+                <input type="checkbox" name="r_irradiation_switcher" id="r_irradiation_switcher" runat="server">
+                <label for="r_irradiation_switcher"><span></span>Intraocuar rituximab</label>
+              </div>
+              <div class="section-nested" data-switcher="r_irradiation_switcher">
+                <div class="form-field">
+                  <input class="input-small" type="text" name="r_irr_total_dose" id="r_irr_total_dose" maxlength="3" runat="server">
+                  <label for="r_irr_total_dose"><span>[ in Gy ]</span></label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Complications -->
+            <div class="form-field">
+              <input type="checkbox" name="r_complications_switcher" id="r_complications_switcher" runat="server">
+              <label class="bolder-font" for="r_complications_switcher"><span></span>Complications present during reporting interval</label>
+            </div>
+            <div class="section-nested" data-switcher="r_complications_switcher">
+              <div class="form-field">
+                <input type="checkbox" name="r_keratopathy" id="r_keratopathy" runat="server">
+                <label for="r_keratopathy"><span></span>Keratopathy</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="r_cataract" id="r_cataract" runat="server">
+                <label for="r_cataract"><span></span>Cataract</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="r_raised_intraocular_pressure" id="r_raised_intraocular_pressure" runat="server">
+                <label for="r_raised_intraocular_pressure"><span></span>Raised intraocular pressure</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="r_glaucoma" id="r_glaucoma" runat="server">
+                <label for="r_glaucoma"><span></span>Glaucoma</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="r_uveitis" id="r_uveitis" runat="server">
+                <label for="r_uveitis"><span></span>Uveitis</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="r_maculopathy" id="r_maculopathy" runat="server">
+                <label for="r_maculopathy"><span></span>Maculopathy</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="r_retinopathy" id="r_retinopathy" runat="server">
+                <label for="r_retinopathy"><span></span>Retinopathy</label>
+              </div>
+              <div class="form-field">
+                <input type="checkbox" name="r_other_complication_switcher" id="r_other_complication_switcher" runat="server">
+                <label for="r_other_complication_switcher"><span></span>Other complications</label>
+              </div>
+              <div class="section-nested" data-switcher="r_other_complication_switcher">
+                <div class="form-field-relative">
+                  <textarea name="r_other_complication" id="r_other_complication" placeholder="Specify" class="input-regular input-multiline"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="form-field">
+              <p class="required bolder-font">Status at end of reporting interval</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <select class="input-regular" name="r_status" id="r_status" runat="server">
+                  <option value="null">Complete Response</option>
+                </select>
+              </div>
+              <div class="form-field-relative">
+                <textarea class="input-regular input-multiline" type="text" name="r_define" id="r_define" runat="server" placeholder="Define"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Extra Ocular -->
+    <div class="block">
+      <div class="block-header">
+        <h3 class="block-heading centered-text">Extra Ocular Disease & treatment</h3>
+      </div>
+      <div class="block-content-section">
+        <!-- 1st section -->
+        <div class="section-half float-left">
+          <!-- Extensive treatment during reporting period -->
+          <div class="form-field">
+            <input type="checkbox" name="extensive_treatment_switcher" id="extensive_treatment_switcher" runat="server">
+            <label class="bolder-font" for="extensive_treatment_switcher"><span></span>Extensive treatment during reporting period</label>
+          </div>
+          <div class="section-nested" data-switcher="extensive_treatment_switcher">
+            <!-- Systemic chemotherapy -->
+            <div class="form-field">
+              <input type="checkbox" name="systemic_chemotherapy" id="systemic_chemotherapy" runat="server">
+              <label for="systemic_chemotherapy"><span></span>Systemic chemotherapy</label>
+            </div>
+            <!-- Intrathecal chemotherapy -->
+            <div class="form-field">
+              <input type="checkbox" name="intrathecal_chemotherapy" id="intrathecal_chemotherapy" runat="server">
+              <label for="intrathecal_chemotherapy"><span></span>Intrathecal chemotherapy</label>
+            </div>
+            <!-- Whole brain radiotherapy -->
+            <div class="form-field">
+              <input type="checkbox" name="whole_brain_radiotherapy" id="whole_brain_radiotherapy" runat="server">
+              <label for="whole_brain_radiotherapy"><span></span>Whole brain radiotherapy</label>
+            </div>
+            <!-- Stem cell transplantation -->
+            <div class="form-field">
+              <input type="checkbox" name="stem_cell_transplantation" id="stem_cell_transplantation" runat="server">
+              <label for="stem_cell_transplantation"><span></span>Stem cell transplantation</label>
+            </div>
+            <!-- Other treatment -->
+            <div class="form-field">
+              <input type="checkbox" name="other_treatment_swither" id="other_treatment_swither" runat="server">
+              <label for="other_treatment_swither"><span></span>Other treatment</label>
+            </div>
+            <div class="section-nested" data-switcher="other_treatment_swither">
+              <div class="form-field">
+                <input class="input-regular" type="text" name="other_treatment" id="other_treatment" placeholder="Specify" runat="server"></input>
+              </div>
+            </div>
+          </div>
+
+          <!-- Complications present during reporting interval -->
+          <div class="form-field">
+            <input type="checkbox" name="complications_switcher" id="complications_switcher" runat="server">
+            <label class="bolder-font" for="complications_switcher"><span></span>Complications present during reporting interval</label>
+          </div>
+          <div class="section-nested" data-switcher="complications_switcher">
+            <!-- Leukoencephalopathy -->
+            <div class="form-field">
+              <input type="checkbox" name="leukoencephalopathy" id="leukoencephalopathy" runat="server">
+              <label for="leukoencephalopathy"><span></span>Leukoencephalopathy</label>
+            </div>
+            <!-- Myelosuppression -->
+            <div class="form-field">
+              <input type="checkbox" name="myelosuppression" id="myelosuppression" runat="server">
+              <label for="myelosuppression"><span></span>Myelosuppression</label>
+            </div>
+            <!-- Infection -->
+            <div class="form-field">
+              <input type="checkbox" name="infection" id="infection" runat="server">
+              <label for="infection"><span></span>Infection</label>
+            </div>
+            <!-- Hepatotoxicity -->
+            <div class="form-field">
+              <input type="checkbox" name="hepatotoxicity" id="hepatotoxicity" runat="server">
+              <label for="hepatotoxicity"><span></span>Hepatotoxicity</label>
+            </div>
+            <!-- Nephrotoxicity -->
+            <div class="form-field">
+              <input type="checkbox" name="nephrotoxicity" id="nephrotoxicity" runat="server">
+              <label for="nephrotoxicity"><span></span>Nephrotoxicity</label>
+            </div>
+            <!-- Ileus-->
+            <div class="form-field">
+              <input type="checkbox" name="ileus" id="ileus" runat="server">
+              <label for="ileus"><span></span>Ileus</label>
+            </div>
+            <!-- Other complication -->
+            <div class="form-field">
+              <input type="checkbox" name="other_complication_switcher" id="other_complication_switcher" runat="server">
+              <label for="other_complication_switcher"><span></span>Other complication</label>
+            </div>
+            <div class="section-nested" data-switcher="other_complication_switcher">
+              <div class="form-field">
+                <input class="input-regular" type="text" name="other_complication" id="other_complication" placeholder="Specify" runat="server"></input>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 2nd section -->
+        <div class="section-half float-left">
+          <!-- Extra-Ocular involvement during reporting interval -->
+          <div class="form-field">
+            <input type="checkbox" name="extra_ocular_switcher" id="extra_ocular_switcher" runat="server">
+            <label class="bolder-font" for="extra_ocular_switcher"><span></span>Extra-Ocular involvement during reporting interval</label>
+          </div>
+          <div class="section-nested" data-switcher="extra_ocular_switcher">
+            <!-- Brain parencyhma -->
+            <div class="form-field">
+              <input type="checkbox" name="brain_parencyhma" id="brain_parencyhma" runat="server">
+              <label for="brain_parencyhma"><span></span>Brain parencyhma</label>
+            </div>
+            <!-- Spinal cord parenchyma -->
+            <div class="form-field">
+              <input type="checkbox" name="spinal_cord_parenchyma" id="spinal_cord_parenchyma" runat="server">
+              <label for="spinal_cord_parenchyma"><span></span>Spinal cord parenchyma</label>
+            </div>
+            <!-- Leptomeninges (including CSF) -->
+            <div class="form-field">
+              <input type="checkbox" name="leptomeninges" id="leptomeninges" runat="server">
+              <label for="leptomeninges"><span></span>Leptomeninges (including CSF)</label>
+            </div>
+            <!-- Other extraocular involvement -->
+            <div class="form-field">
+              <input type="checkbox" name="disease_site_other_swithcer" id="disease_site_other_swithcer" runat="server">
+              <label for="disease_site_other_swithcer"><span></span>Other extraocular involvement</label>
+            </div>
+            <div class="section-nested" data-switcher="disease_site_other_swithcer">
+              <div class="form-field">
+                <input class="input-regular" type="text" name="disease_site_other" id="disease_site_other" placeholder="Specify" runat="server"></input>
+              </div>
+            </div>
+          </div>
+
+          <!-- Status at the end of reporting interval -->
+          <div class="form-field">
+            <p class="required bolder-font">Status at the end of reporting interval</p>
+          </div>
+          <div class="section-nested">
+            <div class="form-field">
+              <input type="radio" name="status" id="status-alive" value="0" runat="server">
+              <label for="status-alive"><span></span>Alive</label>
+            </div>
+            <div class="form-field">
+              <input type="radio" name="status" id="status_deceased_switcher" value="1" runat="server">
+              <label for="status_deceased_switcher"><span></span>Deceased</label>
+            </div>
+            <div class="section-nested" data-switcher="status_deceased_switcher">
+              <div class="form-field">
+                <input class="input-small" type="text" name="age_years" id="age_years" maxlength="3" runat="server">
+                <label for="age_years"><span></span>Years</label>
+                <input class="input-small" type="text" name="age_months" id="age_months" maxlength="2" runat="server">
+                <label for="age_months"><span></span>Months</label>
+              </div>
+            </div>
+            <div class="form-field">
+              <input type="radio" name="status" id="status-unknown" value="2" runat="server">
+              <label for="status-unknown"><span></span>Unknown</label>
+            </div>
+            <div class="form-field">
+              <input type="radio" name="status" id="status_revised_switcher" value="3" runat="server">
+              <label for="status_revised_switcher"><span></span>Revised non-lymphoma diagnosis</label>
+            </div>
+            <div class="section-nested" data-switcher="status_revised_switcher">
+              <div class="form-field-relative">
+                <textarea class="input-regular input-multiline" type="text" name="cause_of_death" id="cause_of_death" placeholder="Specify" runat="server"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Buttons -->
+    <div class="block-transparent">
+      <span id="cancel" class="button-large button-red icon-cancel-white float-right no-margin-right text-align-center">Cancel</span>
+      <span id="submit" type="submit" class="button-large button-green icon-tick-white float-right text-align-center">Save</span>
+    </div>
+
+  </div>
+</body>
+
+</html>

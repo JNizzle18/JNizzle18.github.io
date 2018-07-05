@@ -1,0 +1,112 @@
+// general styles
+button:extend([class*="block"]) {
+  display: inline-block;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0;
+  border-radius: @standard-border-radius;
+  margin: 0 @standard-margin @standard-shadow-size;
+}
+[class*="button"]:extend([class*="block"]) {
+  border-radius: @standard-border-radius;
+  cursor: pointer;
+  color: inherit;
+  display: inline-block;
+  margin: 0 @standard-margin @standard-shadow-size;
+}
+// icons
+[class*="button"], .input-large-container, .record .baseline-status {
+  position: relative;
+  &:before, &:after {
+    content: '';
+    position: absolute;
+  }
+  &:before {
+    width: 18px;
+    height: 16px;
+  }
+  &:after {
+    width: 1px;
+    top: 0;
+    left: @standard-padding + 18 + @standard-padding;
+    .splitter;
+  }
+}
+// responsive size button
+.button-regular {
+  height: @regular-button-height;
+  line-height: @regular-button-height;
+  padding: 0 @standard-padding 0 (@standard-padding + 18 + 1 + @standard-padding * 2);
+  &:before {
+    top: (@regular-button-height - 16) / 2;
+  }
+  &:after {
+    height: @regular-button-height;
+    border-left: 1px solid @dark-grey;
+  }
+}
+// fixed size buttons
+.button-large,
+.button-wide {
+  height: @large-button-height;
+  line-height: @large-button-height;
+  padding-left: @standard-padding + 18 + @standard-padding;
+  &:before {
+    top: (@large-button-height - 16) / 2;
+  }
+  &:after {
+    height: @large-button-height;
+  }
+}
+.button-wide {
+  width: @large-button-width;
+}
+.button-large {
+  width: @regular-button-width;
+}
+.button-regular,
+.button-large,
+.button-wide {
+  font-size: @text-size;
+  text-transform: lowercase;
+  .roboto-medium;
+  &:before {
+    left: @standard-padding;
+  }
+}
+// button colors
+.button-green {
+  background: @lighter-green;
+  box-shadow: @standard-shadow @darker-green;
+  &:hover {
+    background: darken(@lighter-green, 3%);
+  }
+}
+.button-red {
+  background: @lighter-red;
+  box-shadow: @standard-shadow @darker-red;
+  &:hover {
+    background: darken(@lighter-red, 3%);
+  }
+}
+.button-blue {
+  background: @lighter-blue;
+  box-shadow: @standard-shadow @darker-blue;
+  &:hover {
+    background: darken(@lighter-blue, 3%);
+  }
+}
+.button-green,
+.button-red,
+.button-blue {
+  color: @block-bg-color;
+}
+.button-white {
+  background: @block-bg-color;
+  color: @text-dark-grey;
+  box-shadow: @standard-shadow @grey-shadow;
+}

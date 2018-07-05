@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Default</title>
+  <link rel="stylesheet/less" type="text/css" href="less/style.less">
+  <script src="js/less.js" data-env="development"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="js/jquery.selectBox.js"></script>
+  <script>
+    $(function() {
+      // initialise select boxes
+      $('select').selectBox();
+    });
+  </script>
+</head>
+
+<body>
+  <!-- content wrapper -->
+  <div id="content">
+
+    <div class="block">
+      <div class="block-header">
+        <h3 class="block-heading text-align-center">Reminders</h3>
+      </div>
+      <div class="block-content-section">
+        <div id="reminders" class="section-full" runat="server">
+          <!-- overdue -->
+          <div class="reminder overdue">
+            <p class="status status-heading text-align-center bolder-font">Overdue</p>
+            <p class="message">
+              <span class="subject">Subject 216</span> is missing a follow up for <span class="interval">Jun 31, 2015</span>
+            </p>
+            <div class="actions">
+              <span class="button-regular button-white icon-plus-default no-margin-right">add information</span>
+              <span class="button-regular button-white icon-cancel-default no-margin-right">subject didn't show up</span>
+            </div>
+          </div>
+          <!-- unlocked -->
+          <div class="reminder unlocked">
+            <p class="status status-heading text-align-center bolder-font">Unlocked</p>
+            <p class="message">
+              Follow up for <span class="subject">Subject 186</span> for <span class="interval">Dec 31, 2014</span> is <span class="message-status">not locked</span> and will be locked automatically in <span class="remaining-time">3h 45m</span>
+            </p>
+            <div class="actions">
+              <span class="button-regular button-white icon-eye-default no-margin-right">view baseline</span>
+            </div>
+          </div>
+          <!-- due -->
+          <div class="reminder due">
+            <p class="status text-align-center status-heading bolder-font">Due</p>
+            <p class="message"><span class="subject">Subject 216</span> is missing a follow up for <span class="interval">Jun 31, 2015</span></p>
+            <div class="actions">
+              <span class="button-regular button-white icon-plus-default no-margin-right">add information</span>
+              <span class="button-regular button-white icon-cancel-default no-margin-right">subject didn't show up</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- search + add subject + manage users -->
+    <!-- <div class="block-transparent text-align-center"> -->
+      <!-- change search-container to input-lagre -->
+      <!-- <div class="input-large-container icon-search no-margin-right float-left">
+        <input class="float-left" type="text" id="search-by-user" name="search-by-user" placeholder="Search subjects by user">
+      </div>
+      <span class="button-wide button-blue icon-plus-white no-margin-right">add subject</span>
+      <span class="button-wide button-blue icon-user-white no-margin-right float-right">Manage Users</span> -->
+    <!-- </div> -->
+
+    <!-- search + add subject + manage users -->
+    <div class="block-transparent text-align-center">
+      <!-- change search-container to input-lagre -->
+      <div class="input-large-container icon-search no-margin-right float-left">
+        <input class="float-left" type="text" id="search-by-user" name="search-by-user" placeholder="Search subjects by user">
+      </div>
+      <span class="button-wide button-blue icon-plus-white no-margin-right">add subject</span>
+      <span class="button-wide button-blue icon-user-white no-margin-right float-right">Manage Users</span>
+    </div>
+
+    <!-- list of subjects -->
+    <div class="block">
+      <div class="block-header">
+        <h3 class="block-heading text-align-center">Subjects</h3>
+      </div>
+      <div class="block-content-section">
+        <!-- pagination top -->
+        <div class="section-full">
+          <div class="pagination">
+            <p class="float-left">
+              <span class="number-of-subjects">135</span>
+              <span>subject(s) in total</span>
+            </p>
+            <p class="float-right">
+              <!-- TIP! &#60; for "<", &#62; for ">" -->
+              <a href="#" class="first">&#60;&#60; first</a>
+              <a href="#" class="prev">&#60; prev</a>
+              <span class="current-page">1</span>
+              <span>of</span>
+              <span class="number-of-pages">7</span>
+              <a href="#" class="next">next &#62;</a>
+              <a href="#" class="last">last &#62;&#62;</a>
+            </p>
+          </div>
+
+          <div id="subjects" runat="server">
+            <div class="record">
+              <p class="subject text-align-center bolder-font">Subject 168</p>
+              <p class="baseline-status">Baseline status</p>
+              <p class="baseline-status-message">unlocked</p>
+              <span class="button-regular button-white icon-eye-default no-margin-right">view baseline</span>
+              <div class="follow-up float-right">
+                <span>Follow-up</span>
+                <select class="input-follow-up-select" name="ri_year" id="ri_year" runat="server">
+                  <option value="null">year</option>
+                </select>
+                <select class="input-follow-up-select" name="ri_interval" id="ri_interval" runat="server">
+                  <option value="null">interval</option>
+                </select>
+                <span class="button-regular button-white icon-tick-default no-margin-right">open follow-up</span>
+              </div>
+            </div>
+            <div class="record alt">
+              <p class="subject text-align-center bolder-font">Subject 168</p>
+              <p class="baseline-status locked">Baseline status</p>
+              <p class="baseline-status-message locked">locked</p>
+              <span class="button-regular button-white icon-eye-default no-margin-right">view baseline</span>
+              <div class="follow-up float-right">
+                <span>Follow-up</span>
+                <select class="input-follow-up-select" name="ri_year" id="ri_year" runat="server">
+                  <option value="null">year</option>
+                </select>
+                <select class="input-follow-up-select" name="ri_interval" id="ri_interval" runat="server">
+                  <option value="null">interval</option>
+                </select>
+                <span class="button-regular button-white icon-tick-default no-margin-right">open follow-up</span>
+              </div>
+            </div>
+            <div class="record">
+              <p class="subject text-align-center bolder-font">Subject 168</p>
+              <p class="baseline-status">Baseline status</p>
+              <p class="baseline-status-message">unlocked</p>
+              <span class="button-regular button-white icon-eye-default no-margin-right">view baseline</span>
+              <div class="follow-up float-right">
+                <span>Follow-up</span>
+                <select class="input-follow-up-select" name="ri_year" id="ri_year" runat="server">
+                  <option value="null">year</option>
+                </select>
+                <select class="input-follow-up-select" name="ri_interval" id="ri_interval" runat="server">
+                  <option value="null">interval</option>
+                </select>
+                <span class="button-regular button-white icon-tick-default no-margin-right">open follow-up</span>
+              </div>
+            </div>
+            <div class="record alt">
+              <p class="subject text-align-center bolder-font">Subject 168</p>
+              <p class="baseline-status locked">Baseline status</p>
+              <p class="baseline-status-message locked">locked</p>
+              <span class="button-regular button-white icon-eye-default no-margin-right">view baseline</span>
+              <div class="follow-up float-right">
+                <span>Follow-up</span>
+                <select class="input-follow-up-select" name="ri_year" id="ri_year" runat="server">
+                  <option value="null">year</option>
+                </select>
+                <select class="input-follow-up-select" name="ri_interval" id="ri_interval" runat="server">
+                  <option value="null">interval</option>
+                </select>
+                <span class="button-regular button-white icon-tick-default no-margin-right">open follow-up</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- pagination bottom -->
+          <div class="pagination">
+            <p class="float-left">
+              <span class="number-of-subjects">135</span>
+              <span>subject(s) in total</span>
+            </p>
+            <p class="float-right">
+              <!-- &#60; for "<", &#62; for ">" -->
+              <a href="#" class="first">&#60;&#60; first</a>
+              <a href="#" class="prev">&#60; prev</a>
+              <span class="current-page">1</span>
+              <span>of</span>
+              <span class="number-of-pages">7</span>
+              <a href="#" class="next">next &#62;</a>
+              <a href="#" class="last">last &#62;&#62;</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

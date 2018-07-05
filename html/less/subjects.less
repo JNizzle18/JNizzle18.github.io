@@ -1,0 +1,79 @@
+.pagination:extend([class*="block"]){
+  height: @input-height;
+  line-height: @input-height;
+  color: @text-light-grey;
+  span,
+  a {
+    margin: 0 2px;
+  }
+}
+.record:extend([class*="block"]){
+  width: 100%;
+  height: @reminder-height;
+  background: @medium-grey;
+  border-radius: @standard-border-radius;
+  margin-bottom: 2px;
+  font-size: 0;
+  .vertical-align;
+  .subject:extend([class*="block"]),
+  .baseline-status:extend([class*="block"]),
+  .baseline-status-message:extend([class*="block"]),
+  .follow-up:extend([class*="block"]) {
+    height: @reminder-height;
+    padding: 0 @standard-padding;
+    border-left: 1px solid @block-bg-color;
+  }
+  .subject,
+  .baseline-status,
+  .baseline-status-message {
+    font-size: @text-size;
+    line-height: @reminder-height;
+  }
+  .follow-up {
+    padding-left: @standard-padding;
+    .vertical-align;
+    > * {
+      font-size: @text-size;
+    }
+  }
+  .subject {
+    width: @follow-up-select-width + @standard-padding;
+    border: none;
+  }
+  .baseline-status {
+    padding: 0 @standard-padding * 1.5 + 18 0 @standard-padding;
+    &:before:extend(.icon-lock-open-grey:before) {
+      top: (@reminder-height - 16) / 2;
+      right: 0;
+    }
+    &.locked:before:extend(.icon-lock-grey:before) {}
+    &:after {
+      display: none;
+    }
+  }
+  .baseline-status-message {
+    width: @follow-up-select-width;
+    // padding: 0 @standard-padding;
+    border-right: 1px solid @block-bg-color;
+    border-left: none;
+    color: @darker-red;
+    .text-align-center;
+    .roboto-medium;
+  }
+  .baseline-status-message.locked {
+    color: @darker-green;
+  }
+  > button {
+    width: 152px; // hardcoded because I'm a bastard
+    margin: 0 @standard-margin;
+  }
+}
+.record.alt {
+  background: @light-grey;
+}
+#subjects {
+  margin: @standard-margin 0;
+  .record:last-child {
+  margin-bottom: 0;
+  }
+}
