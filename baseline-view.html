@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Baseline : View</title>
+  <link rel="stylesheet/less" type="text/css" href="less/style.less">
+  <script src="js/less.js" data-env="development"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="js/jquery.selectBox.js"></script>
+</head>
+
+<body>
+  <div id="content">
+
+    <!-- Subject -->
+    <div class="block">
+      <div class="block-header">
+        <h3 class="block-heading text-align-center">Subject</h3>
+      </div>
+      <div class="block-content-section">
+        <div class="section-half float-left">
+          <div class="form-field">
+            <p class="tip">Gender:</p>
+          </div>
+          <div class="form-field">
+            <p class="tip">Age at first diagnosis of vitreoretinal lymphoma:</p>
+          </div>
+          <div class="form-field">
+            <p class="tip">Country of birth:</p>
+          </div>
+          <div class="form-field">
+            <p class="tip">Culture, ethnicity and/or race:</p>
+          </div>
+          <div class="form-field">
+            <p class="tip">HIV status:</p>
+          </div>
+        </div>
+        <div class="section-half float-right">
+          <!-- gender -->
+          <div class="form-field">
+            <p class="input-regular" id="gender" runat="server">Value</p>
+          </div>
+          <!-- age -->
+          <div class="form-field">
+            <p class="input-small" id="age_years" runat="server">00</p>
+            <span class="tip">Years</span>
+            <p class="input-small" id="age_months" runat="server">00</p>
+            <span class="tip">Months</span>
+          </div>
+          <!-- country of birth -->
+          <div class="form-field">
+            <p class="input-regular" id="country_of_birth" runat="server">Value</p>
+          </div>
+          <!-- ethnicity -->
+          <div class="form-field">
+            <p class="input-regular" id="ethnicity" runat="server">Value</p>
+          </div>
+          <!-- HIV status -->
+          <div class="form-field">
+            <p class="input-regular" id="hiv_status" runat="server">Value</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basis for First Diagnosis -->
+    <div class="block">
+      <div class="block-header">
+        <h3 class="block-heading text-align-center">Basis for First Diagnosis of Vitreoretinal Lymphoma</h3>
+      </div>
+      <!-- 1st section -->
+      <div class="block-content-section">
+        <div class="section-half float-left">
+          <!-- Aqueous -->
+          <div class="form-field">
+            <p class="parent" id="aqueous" runat="server"><span></span>Aqueous</p>
+          </div>
+          <div class="section-nested">
+            <div class="form-field">
+              <p class="negative" id="aqu_cytology" runat="server"><span></span>Cytology</p>
+            </div>
+            <div class="form-field">
+              <p class="parent" id="aqu_immunophenotyping" runat="server"><span></span>Immunophenotyping</p>
+            </div>
+            <!-- Immunophenotyping -->
+            <div class="section-nested">
+              <div class="form-field">
+                <p id="aqu_immunocytochemistry" runat="server"><span></span>Immunocytochemistry</p>
+              </div>
+              <div class="form-field">
+                <p id="aqu_flow_cytometry" runat="server"><span></span>Flow cytometry</p>
+              </div>
+            </div>
+            <div class="form-field">
+              <p class="parent" id="aqu_pcr" runat="server"><span></span>PCR</p>
+            </div>
+            <!-- PCR -->
+            <div class="section-nested">
+              <div class="form-field">
+                <p class="negative" id="aqu_pcr_igh_gene" runat="server"><span></span>IgH gene rearrangement</p>
+              </div>
+              <div class="form-field">
+                <p class="negative" id="aqu_pcr_other_marker_switcher" runat="server"><span></span>Other marker</p>
+              </div>
+              <div class="section-nested hidden">
+                <div class="form-field">
+                  <p type="text" id="aqu_pcr_other_marker" runat="server">Value</p>
+                </div>
+              </div>
+            </div>
+            <div class="form-field">
+              <p class="parent" id="aqu_cytokine_analysis" runat="server"><span></span>Cytokine analysis</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <p id="aqu_cytokine_il_10" runat="server"><span></span>IL-10</p>
+              </div>
+              <div class="form-field">
+                <p id="aqu_cytokine_il_10_il_6" runat="server"><span></span>IL-10:IL-6</p>
+              </div>
+            </div>
+            <div class="form-field">
+              <p class="parent" id="aqu_other_test_switcher" runat="server"><span></span>Other test</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <p type="text" id="aqu_other_test" runat="server">Value</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-half float-right">
+          <!-- Vitreous -->
+          <div class="form-field">
+            <p id="vitreous" runat="server"><span></span>Vitreous</p>
+          </div>
+          <div class="section-nested">
+            <div class="form-field">
+              <p id="vit_cytology" runat="server"><span></span>Cytology</p>
+            </div>
+            <div class="form-field">
+              <p id="vit_immunophenotyping" runat="server"><span></span>Immunophenotyping</p>
+            </div>
+            <!-- Immunophenotyping -->
+            <div class="section-nested">
+              <div class="form-field">
+                <p id="vit_immunocytochemistry" runat="server"><span></span>Immunocytochemistry</p>
+              </div>
+              <div class="form-field">
+                <p id="vit_flow_cytometry" runat="server"><span></span>Flow cytometry</p>
+              </div>
+            </div>
+            <div class="form-field">
+              <p id="vit_pcr" runat="server"><span></span>PCR</p>
+            </div>
+            <!-- PCR -->
+            <div class="section-nested">
+              <div class="form-field">
+                <p id="vit_pcr_igh_gene" runat="server"><span></span>IgH gene rearrangement</p>
+              </div>
+              <div class="form-field">
+                <p id="vit_pcr_other_marker_switcher" runat="server"><span></span>Other marker</p>
+              </div>
+              <div class="section-nested">
+                <div class="form-field">
+                  <p type="text" id="vit_pcr_other_marker" runat="server">Value</p>
+                </div>
+              </div>
+            </div>
+            <div class="form-field">
+              <p id="vit_cytokine_analysis" runat="server"><span></span>Cytokine analysis</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <p id="vit_cytokine_il_10" runat="server"><span></span>IL-10</p>
+              </div>
+              <div class="form-field">
+                <p id="vit_cytokine_il_10_il_6" runat="server"><span></span>IL-10:IL-6</p>
+              </div>
+            </div>
+            <div class="form-field">
+              <p id="vit_other_test_switcher" runat="server"><span></span>Other test</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <p type="text" id="vit_other_test" runat="server">Value</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 2nd section -->
+      <div class="block-content-section">
+        <div class="section-half float-left">
+          <!-- Retina-Choroid -->
+          <div class="form-field">
+            <p id="retina_choroid" runat="server"><span></span>Retina-Choroid</p>
+          </div>
+          <div class="section-nested">
+            <div class="form-field">
+              <p id="ret_histopathology" runat="server"><span></span>Histopathology</p>
+            </div>
+            <div class="form-field">
+              <p id="ret_immunophenotyping" runat="server"><span></span>Immunophenotyping</p>
+            </div>
+            <!-- Immunophenotyping -->
+            <div class="section-nested">
+              <div class="form-field">
+                <p id="ret_immunocytochemistry" runat="server"><span></span>Immunocytochemistry</p>
+              </div>
+              <div class="form-field">
+                <p id="ret_immunohistochemistry" runat="server"><span></span>Immunohistochemistry</p>
+              </div>
+            </div>
+            <div class="form-field">
+              <p id="ret_pcr" runat="server"><span></span>PCR</p>
+            </div>
+            <!-- PCR -->
+            <div class="section-nested">
+              <div class="form-field">
+                <p id="ret_pcr_igh_gene" runat="server"><span></span>IgH gene rearrangement</p>
+              </div>
+              <div class="form-field">
+                <p id="ret_pcr_other_marker_switcher" runat="server"><span></span>Other marker</p>
+              </div>
+              <div class="section-nested">
+                <div class="form-field">
+                  <p type="text" id="ret_pcr_other_marker" runat="server">Value</p>
+                </div>
+              </div>
+            </div>
+            <div class="form-field">
+              <p id="ret_other_test_switcher" runat="server"><span></span>Other test</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <p type="text" id="ret_other_test" runat="server">Value</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-half float-right">
+          <div class="form-field">
+            <p id="other_ocular_tissue_switcher" runat="server"><span></span>Other ocular tissue</p>
+          </div>
+          <div class="section-nested">
+            <div class="form-field">
+              <p type="text" id="other_ocular_tissue" runat="server">Value</p>
+            </div>
+          </div>
+          <div class="form-field">
+            <p id="circumstantial_only" runat="server"><span></span>Circumstantial only</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="height-regulator">
+      <!-- Initial Disease Site -->
+      <div class="block-half">
+        <div class="block-header">
+          <h3 class="block-heading text-align-center">Initial Disease Site</h3>
+        </div>
+        <div class="block-content-section">
+          <div class="section-full">
+            <div class="form-field">
+              <p id="eye" runat="server"><span></span>Eye</p>
+            </div>
+            <div class="form-field">
+              <p id="brain_parencyhma" runat="server"><span></span>Brain parenchyma</p>
+            </div>
+            <div class="form-field">
+              <p id="spinal_cord_parenchyma" runat="server"><span></span>Spinal cord parenchyma</p>
+            </div>
+            <div class="form-field">
+              <p id="leptomeninges" runat="server"><span></span>Leptomeninges (incl. CSF)</p>
+            </div>
+            <div class="form-field">
+              <p id="disease_site_other_switcher" runat="server"><span></span>Other</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <p type="text" id="disease_site_other" runat="server">Value</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <!-- Presentation -->
+      <div class="block-half">
+        <div class="block-header">
+          <h3 class="block-heading text-align-center">Presentation</h3>
+        </div>
+        <div class="block-content-section">
+          <div class="section-full">
+            <div class="form-field">
+              <p id="presentation- runat=" server "new"><span></span>New-onset disease</p>
+            </div>
+            <div class="form-field">
+              <p id="presentation- runat=" server "progressive"><span></span>Progressive disease</p>
+            </div>
+            <div class="form-field">
+              <p id="presentation_other_swither" runat="server"><span></span>Other presentation</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <p type="text" id="presentation_other" runat="server">Value</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="block">
+      <div class="block-header">
+        <h3 class="block-heading text-align-center">Eye disease at presentation</h3>
+      </div>
+      <div class="block-content-section">
+        <!-- left eye -->
+        <div class="section-half float-left">
+          <div class="form-field">
+            <p id="l_is_present" runat="server"><span></span>Left eye</p>
+          </div>
+          <div class="section-nested">
+            <div class="form-field">
+              <p>Visual acuity at presentation</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <p id="l_visual_acuity" runat="server">Value</p>
+              </div>
+            </div>
+            <div class="form-field">
+              <p>Ocular involvement at presentation</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <p id="l_tissue_vitreous" runat="server"><span></span>Vitreous</p>
+              </div>
+              <div class="form-field">
+                <p id="l_tissue_retina" runat="server"><span></span>Retina (incl. RPE)</p>
+              </div>
+              <div class="form-field">
+                <p id="l_tissue_optic_nerve" runat="server"><span></span>Optic nerve</p>
+              </div>
+              <div class="form-field">
+                <p id="l_tissue_anterior_segment" runat="server"><span></span>Anterior segment</p>
+              </div>
+              <div class="form-field">
+                <p id="l_tissue_other_switcher" runat="server"><span></span>Other ocular tissue</p>
+              </div>
+              <div class="section-nested">
+                <div class="form-field">
+                  <p id="l_tissue_other">Value</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- right eye -->
+        <div class="section-half float-right">
+          <div class="form-field">
+            <p id="r_is_present" runat="server"><span></span>Right eye</p>
+          </div>
+          <div class="section-nested">
+            <div class="form-field">
+              <p>Visual acuity at presentation</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <p id="r_visual_acuity" runat="server">Value</p>
+              </div>
+            </div>
+            <div class="form-field">
+              <p>Ocular involvement at presentation</p>
+            </div>
+            <div class="section-nested">
+              <div class="form-field">
+                <p id="r_tissue_vitreous" runat="server"><span></span>Vitreous</p>
+              </div>
+              <div class="form-field">
+                <p id="r_tissue_retina" runat="server"><span></span>Retina (incl. RPE)</p>
+              </div>
+              <div class="form-field">
+                <p id="r_tissue_optic_nerve" runat="server"><span></span>Optic nerve</p>
+              </div>
+              <div class="form-field">
+                <p id="r_tissue_anterior_segment" runat="server"><span></span>Anterior segment</p>
+              </div>
+              <div class="form-field">
+                <p id="r_tissue_other_switcher" runat="server"><span></span>Other ocular tissue</p>
+              </div>
+              <div class="section-nested">
+                <div class="form-field">
+                  <p id="r_tissue_other">Value</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="block-transparent">
+      <button id="lock" class="button-large button-red icon-lock-white float-right no-margin-right">
+          <span>Lock</span>
+      </button>
+      <button id="edit" type="submit" class="button-large button-green icon-edit-white float-right">
+          <span>Edit</span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Alert div -->
+  <div class="alert-box faded-screen hidden">
+    <div>
+      <div class="block">
+        <div class="block-header text-align-center">
+          <h3 class="block-heading">Heads Up!</h3>
+        </div>
+        <div class="block-content-section">
+          <div class="section-full">
+              <p class="bolder-font">You are about to lock this document. Are you sure you want to proceed?</p>
+              <p>After you lock the document...</p>
+          </div>
+        </div>
+        <div class="block-content-section">
+          <div class="section-full">
+            <button id="cancel" class="button-large button-red icon-cancel-white float-right no-margin-right">
+                <span>No</span>
+            </button>
+            <button id="submit" type="submit" class="button-large button-green icon-tick-white float-right">
+                <span>Yes</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
